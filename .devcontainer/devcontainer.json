@@ -1,0 +1,20 @@
+{
+  "name": "pygis-book",
+  "image": "giswqs/pygis:book",
+  "workspaceFolder": "/app/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/app/workspace,type=bind",
+  "forwardPorts": [8888],
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/opt/conda/bin/python",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
+}
