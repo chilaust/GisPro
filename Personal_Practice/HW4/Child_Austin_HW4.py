@@ -28,8 +28,8 @@ def parseTweets(pathToCSV):
 
             userID = row[1]
             postedTime = row[2]
-            latitude = row[3]
-            longitude = row[4]
+            latitude = float(row[3].strip())
+            longitude = float(row[4].strip())
 
             tupleList.append((userID, postedTime, latitude, longitude))
 
