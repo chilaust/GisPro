@@ -101,7 +101,7 @@ def printfirst10():
         print(f'User ID: {data[i][0]} Time: {data[i][1]}, Latitude: {data[i][2]}, Longitude: {data[i][3]}')
 
 # Get the input file as the first tool parameter
-input_file = arcpy.GetParametersAsText(0)
+input_file = arcpy.GetParameterAsText(0)
 
 output_folder = os.path.dirname(input_file)
 base = os.path.splitext(os.path.basename(input_file))[0]
@@ -111,7 +111,7 @@ output_file = os.path.join(output_folder, base + ".shp")
 data = parseTweets(input_file)
 
 # Output as a shapefile
-generateShapefile (data, output_file)
+generateShapefile(data, output_file)
 
 
 
