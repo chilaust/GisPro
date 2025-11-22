@@ -14,30 +14,34 @@ def parseTweets(pathToCSV):
                 postedTime, latitude & longitude
     """
     tupleList = []
-    f = open(pathToCSV, 'r')
+    with open(pathToCSV, 'r', encoding='utf-8-sig', newline='') as f:
 
-    try:
-        next(f) 
-        rows = csv.reader(f, delimiter=',') 
+        try:
+            rows = csv.reader(f, delimiter=',') 
+            header = next(rows)
 
-        # Iterate through each row
-        for row in rows:
-            # Check to see if there is a lat or long included
-            if row[3].strip() == "" or row[4].strip()== "":
-                continue #skip the row with empty coordinate
+            # Iterate through each row
+            for row in rows:
+                # Check to see if it has all the items
+                if len(row) < 5:
+                    continue
+                
+                # Check to see if there is a lat or long included
+                if row[3].strip() == "" or row[4].strip()== "":
+                    continue 
 
-            userID = row[1]
-            postedTime = row[2]
-            latitude = float(row[3].strip())
-            longitude = float(row[4].strip())
+                userID = row[1]
+                postedTime = row[2]
+                latitude = float(row[3].strip())
+                longitude = float(row[4].strip())
 
-            tupleList.append((userID, postedTime, latitude, longitude))
+                tupleList.append((userID, postedTime, latitude, longitude))
 
-    except Exception as error:
-        print(error)
-    finally:
-        if f != None:
-            f.close()
+        except Exception as error:
+            print(error)
+        finally:
+            if f != None:
+                f.close()
 
     return tupleList
 
