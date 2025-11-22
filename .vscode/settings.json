@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./Personal_Practice/Practice_",
+        "./Personal_Practice/Practice_"
+    ]
+}

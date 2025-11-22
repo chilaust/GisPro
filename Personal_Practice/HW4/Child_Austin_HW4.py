@@ -71,13 +71,15 @@ def generateShapefile (tupleList, shapefilePath):
     # Build spatial reference
     sr = arcpy.SpatialReference(4326)
 
+
+
     # Build arcpy feature class
     arcpy.CreateFeatureclass_management(
-        out_path=os.path.dirname(shapefilePath),
-        out_name=os.basename.dirname(shapefilePath),
-        geometry_type="POINT",
+        out_path=os.path.dirname(shapefilePath), 
+        out_name=os.path.basename(shapefilePath), 
+        geometry_type="POINT", 
         spatial_reference=sr
-    )
+        )
 
     # Add userID as an attribute
     arcpy.AddField_management(shapefilePath, 'userID', 'TEXT')
@@ -101,8 +103,9 @@ def printfirst10():
 # Get the input file as the first tool parameter
 input_file = arcpy.GetParametersAsText(0)
 
-# Get the output file as the second tool parameter
-output_file = arcpy.GetParametersAsText(1)
+output_folder = os.path.dirname(input_file)
+base = os.path.splitext(os.path.basename(input_file))[0]
+output_file = os.path.join(output_folder, base + ".shp")
 
 # Generate the data from the CSV
 data = parseTweets(input_file)
