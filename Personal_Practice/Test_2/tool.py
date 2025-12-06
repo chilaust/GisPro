@@ -64,7 +64,7 @@ def generateShapefile(tupleList, shapefilePath):
 
     arcpy.AddField_management(shapefilePath, 'eventID', 'TEXT')
 
-    with arcpy.da.InsertCursor(shapefilePath, ['SHAPE@', 'userID']) as cursor:
+    with arcpy.da.InsertCursor(shapefilePath, ['SHAPE@', 'eventID']) as cursor:
 
         # Iterate through each attribute
         for eventID, _, begin_lat, begin_lon, _, _ in tupleList:
